@@ -10,12 +10,27 @@ $email = $_POST["email"];
 
 //se $email è definita, allora devo fare i controlli (se ci sono . e @)
 if (isset($email)) {
+    $response = checkValidEmail($email);
+    $message = getAlertMsg($response);
+};
+
+function checkValidEmail($email)
+{
     if (str_contains($email, "@") && str_contains($email, ".")) {
-        $alertMsg = "buona";
+        return true;
     } else {
-        $alertMsg = "no";
+        return false;
     };
 };
+
+function getAlertMsg($response)
+{
+    if ($response) {
+        return "si";
+    } else {
+        return "no";
+    };
+}
 ?>
 
 
@@ -144,10 +159,10 @@ if (isset($email)) {
         </section>
 
         <!-- alert if message exists -->
-        <?php if (isset($alertMsg)) : ?>
+        <?php if (isset($message)) : ?>
             <div class="alert alert-primary" role="alert">
                 <strong>Alert</strong>
-                <span><?php echo $alertMsg ?></span>
+                <span><?php echo $message ?></span>
             </div>
         <?php endif; ?>
 
