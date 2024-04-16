@@ -33,3 +33,18 @@ function getAlertMsg($response)
         ];
     };
 };
+
+//funzione per reindirizzare l'utente alla pagina a seconda che response sia true o false
+
+/**
+ * Redirects user to correct page
+ * @param string $response boolean 
+ */
+function redirectUser($response)
+{
+    if ($response) {
+        header('Location: ./views/thankyou.php');
+    } else {
+        header('Location: index.php');
+    };
+}
