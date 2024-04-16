@@ -8,12 +8,14 @@ $email = $_POST["email"];
 //controllo se $email è definita
 //var_dump(isset($email));
 
-//se $email è definita, allora devo fare i controlli (se ci sono . e @)
+//se $email è definita, allora devo controllare se l'email è valida
+//se l'email è valida, deve restituirmi un msg, se non è valida deve restituirmene un altro 
 if (isset($email)) {
     $response = checkValidEmail($email);
     $message = getAlertMsg($response);
 };
 
+//funzione che controlla se l'email è valida: accetta in ingresso l'email, controlla se ci sono . e @: se ci sono è true, sennò false
 function checkValidEmail($email)
 {
     if (str_contains($email, "@") && str_contains($email, ".")) {
@@ -23,12 +25,19 @@ function checkValidEmail($email)
     };
 };
 
+//funzione che restituisce il messaggio dell'alert e il colore del bannerino: se dalla validazione email risulta true, allora il colore è verde e il messaggio è di email valida, sennò il colore è rosso e di email non valida
 function getAlertMsg($response)
 {
     if ($response) {
-        return "si";
+        return [
+            "class" => "alert-success",
+            "message" => "Email valida"
+        ];
     } else {
-        return "no";
+        return [
+            "class" => "alert-danger",
+            "message" => "Email non valida"
+        ];
     };
 }
 ?>
@@ -160,9 +169,9 @@ function getAlertMsg($response)
 
         <!-- alert if message exists -->
         <?php if (isset($message)) : ?>
-            <div class="alert alert-primary" role="alert">
+            <div class="alert <?php echo $message["class"] ?>" role="alert">
                 <strong>Alert</strong>
-                <span><?php echo $message ?></span>
+                <span><?php echo $message["message"] ?></span>
             </div>
         <?php endif; ?>
 
