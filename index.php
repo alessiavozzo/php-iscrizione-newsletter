@@ -1,5 +1,8 @@
 <?php
 
+//var_dump(__DIR__);
+require_once __DIR__ . "/helpers/functions.php";
+
 //var_dump($_POST);
 //var_dump($_POST["email"]);
 
@@ -15,31 +18,6 @@ if (isset($email)) {
     $message = getAlertMsg($response);
 };
 
-//funzione che controlla se l'email è valida: accetta in ingresso l'email, controlla se ci sono . e @: se ci sono è true, sennò false
-function checkValidEmail($email)
-{
-    if (str_contains($email, "@") && str_contains($email, ".")) {
-        return true;
-    } else {
-        return false;
-    };
-};
-
-//funzione che restituisce il messaggio dell'alert e il colore del bannerino: se dalla validazione email risulta true, allora il colore è verde e il messaggio è di email valida, sennò il colore è rosso e di email non valida
-function getAlertMsg($response)
-{
-    if ($response) {
-        return [
-            "class" => "alert-success",
-            "message" => "Email valida"
-        ];
-    } else {
-        return [
-            "class" => "alert-danger",
-            "message" => "Email non valida"
-        ];
-    };
-}
 ?>
 
 
