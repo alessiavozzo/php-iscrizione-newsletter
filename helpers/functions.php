@@ -35,6 +35,8 @@ function getAlertMsg($response)
 };
 
 //funzione per reindirizzare l'utente alla pagina a seconda che response sia true o false
+//se l'utente mette un'email non valida, devo rimandarlo indietro
+//se l'utente mette un'email valida, devo mandarlo su una pagina di ringraziamento
 
 /**
  * Redirects user to correct page
@@ -44,7 +46,5 @@ function redirectUser($response)
 {
     if ($response) {
         header('Location: ./views/thankyou.php');
-    } else {
-        header('Location: index.php');
     };
-}
+};
