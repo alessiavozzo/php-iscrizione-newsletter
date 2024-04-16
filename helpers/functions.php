@@ -24,12 +24,12 @@ function getAlertMsg($response)
     if ($response) {
         return [
             "class" => "alert-success",
-            "message" => "Email valida"
+            "message" => "Grazie! Iscrizione avvenuta con successo!"
         ];
     } else {
         return [
             "class" => "alert-danger",
-            "message" => "Email non valida"
+            "message" => "L'email inserita non è valida"
         ];
     };
 };
