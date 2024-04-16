@@ -1,3 +1,26 @@
+<?php
+
+//var_dump($_POST);
+//var_dump($_POST["email"]);
+
+$email = $_POST["email"];
+
+//controllo se $email è definita
+//var_dump(isset($email));
+
+//se $email è definita, allora devo fare i controlli (se ci sono . e @)
+if (isset($email)) {
+    if (str_contains($email, "@") && str_contains($email, ".")) {
+        $alertMsg = "buona";
+    } else {
+        $alertMsg = "no";
+    };
+};
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -119,6 +142,15 @@
             </div>
 
         </section>
+
+        <!-- alert if message exists -->
+        <?php if (isset($alertMsg)) : ?>
+            <div class="alert alert-primary" role="alert">
+                <strong>Alert</strong>
+                <span><?php echo $alertMsg ?></span>
+            </div>
+        <?php endif; ?>
+
     </main>
 
     <footer id="site_footer" class="bg-dark">
